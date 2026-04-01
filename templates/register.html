@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang = "ro">
+<head>
+    <meta charset = "UTF-8">
+    <title>Restaurantul Traditional</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename = 'poza restaurant3 unsplash.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; 
+        }
+    </style>
+</head>
+<body class = "bg-light">
+    
+    <div class = "container mt-5">
+        <div class = "row justify-content-center">
+            <div class = "col-md-5">
+                
+                <div class = "card shadow">
+                    <div class = "card-body">
+                        <h3 class = "text-center mb-4">Inregistrare</h3>
+
+                        {% if eroare %}
+                            <div class = "alert alert-danger text-center">
+                                {{eroare}}
+                            </div>
+                        {% endif %}
+                                                    
+                        <form method="POST" action="/register">
+
+                            <div class="mb-3">
+                                <label for="telefon" class="form-label">Numarul de telefon</label>
+                                <input type="number" class="form-control" id="telefon" name="telefon" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nume" class="form-label">Numele Dvs.</label>
+                                <input type="text" class="form-control" id="nume" name="nume" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Adresa Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="parola" class="form-label">Parola</label>
+                                <input type="password" class="form-control" id="parola" name="parola" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100">Creeaza-ti contul !</button>
+                            
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

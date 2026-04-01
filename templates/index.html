@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang = "ro">
+<head>
+    <meta charset = "UTF-8">
+    <title>Restaurantul Traditional</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename = 'poza restaurant2 unsplash.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; 
+        }
+    </style>
+</head>
+
+<body class = "bg-light text-center mt-5">
+
+    <div class = "container text-white" style="text-shadow: 2px 2px 5px black;">
+        <h1 class = "mb-4">Bun venit la restaurantul nostru !</h1>
+        <p class = "lead mb-4">Pentru a va putea face o rezervare online trebuie sa va logati sau sa va creati un cont</p>
+        <p class="lead mb-4">Dati click pe unul din butoanele de mai jos</p>
+        <a href = "/login" class = "btn btn-primary btn-lg">Login</a>
+        <a href = "/register" class = "btn btn-primary btn-lg">Register</a>
+    </div>
+</body>
+</html>
