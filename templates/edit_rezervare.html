@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Rezervari</title>
+    <title>Editare Rezervare</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -41,16 +41,14 @@
         }
         
         .table-option input[type="radio"]:checked + .table-label {
-            background-color: #198754;
-            color: white;
-            border-color: #146c43;
+            background-color: #ffc107;
+            color: black;
+            border-color: #e0a800;
             transform: scale(1.15);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
-        .table-label:hover {
-            background-color: #e2e6ea;
-        }
+        .table-label:hover { background-color: #e2e6ea; }
     </style>
 </head>
 <body class="bg-light">
@@ -61,7 +59,7 @@
                 
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <h3 class="text-center mb-4">Faceți o rezervare</h3>
+                        <h3 class="text-center mb-4 text-warning" style="text-shadow: 1px 1px 2px black;">Editează Rezervarea</h3>
 
                         {% if eroare %}
                             <div class="alert alert-danger text-center">
@@ -69,44 +67,39 @@
                             </div>
                         {% endif %}
                         
-                        <form method="POST" action="/rezervare">
+                        <form method="POST" action="/edit_rezervare/{{ rezervare.id_rezervare }}">
                             
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="data" class="form-label">Data rezervării</label>
-                                    <input type="date" class="form-control" id="data" name="data" required>
+                                    <input type="date" class="form-control" id="data" name="data" value="{{ rezervare.data }}" required>
                                 </div>
                                 
                                 <div class="col-md-6 mb-3">
                                     <label for="ora" class="form-label">Ora rezervării</label>
-                                    <input type="time" class="form-control" id="ora" name="ora" step="1800" required>
+                                    <input type="time" class="form-control" id="ora" name="ora" step="1800" value="{{ rezervare.ora }}" required>
                                 </div>
                             </div>
 
                             <div class="mb-4">
                                 <label for="numar_persoane" class="form-label">Numărul de persoane</label>
-                                <input type="number" class="form-control" id="numar_persoane" name="numar_persoane" min="1" max="15" required>
+                                <input type="number" class="form-control" id="numar_persoane" name="numar_persoane" min="1" max="15" value="{{ rezervare.numar_persoane }}" required>
                             </div>
                             
                             <div class="mb-4 p-3 border rounded bg-light">
-                                <label class="form-label d-block text-center fw-bold mb-3">Alegeți Masa (Mesele sunt așezate la fel ca în locație)</label>
+                                <label class="form-label d-block text-center fw-bold mb-3">Schimbă Masa (1-10)</label>
                                 <div class="table-grid">
                                     {% for i in range(1, 11) %}
                                     <div class="table-option">
-                                        <input type="radio" name="numar_masa" id="masa{{i}}" value="{{i}}" required>
+                                        <input type="radio" name="numar_masa" id="masa{{i}}" value="{{i}}" {% if i == rezervare.numar_masa %}checked{% endif %} required>
                                         <label class="table-label" for="masa{{i}}">{{i}}</label>
                                     </div>
                                     {% endfor %}
                                 </div>
-                                <small class="text-muted d-block text-center mt-2">Dacă masa este deja ocupată la ora aleasă, sistemul vă va avertiza.</small>
                             </div>
                             
-                            <button type="submit" class="btn btn-primary w-100 mb-2">Trimite rezervarea !</button>
-
-                            <a href="/istoric_rezervari" class="btn btn-secondary w-100 mb-2">Rezervările tale</a>
-
-                            <a href="/logout" class="btn btn-danger w-100">Logout</a>
-
+                            <button type="submit" class="btn btn-warning w-100 mb-2 fw-bold">Salvează Modificările !</button>
+                            <a href="javascript:history.back()" class="btn btn-secondary w-100">Anulează</a>
                         </form>
                     </div>
                 </div>
